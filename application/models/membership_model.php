@@ -7,15 +7,22 @@ class Membership_model extends CI_Model {
         parent::__construct();
     }
 
-    function validate() {
-        
-        $this->db->where('username', $this->input->post('username'));
-        $this->db->where('password', md5($this->input->post('password')));
-        $query = $this->db->get('membership');
+    // Read data using username and password
+    public function validate($data) {
 
-        if ($query->num_rows == 1) {
+        $condition = "username =" . "'" . $data['username'] . "' AND " . "password =" . "'" . md5($data['password']) . "'";
+        $this->db->select('*');
+        $this->db->from('membership');
+        $this->db->where($condition);
+        $this->db->limit(1);
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
             return true;
+        } else {
+            return false;
         }
     }
+
 
 }

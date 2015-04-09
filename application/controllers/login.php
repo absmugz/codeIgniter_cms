@@ -9,18 +9,29 @@ class Login extends CI_Controller {
 
     function validate_credentials() {
         $this->load->model('membership_model');
-        $query = $this->membership_model->validate();
 
-        if ($query) { // if the user's credentials validated...
-            $data = array(
-                'username' => $this->input->post('username'),
-                'is_logged_in' => true
+        $data = array(
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password')
+        );
+
+        $result = $this->membership_model->validate($data);
+        if ($result == TRUE) {
+            $sess_array = array(
+                'username' => $this->input->post('username')
             );
-            $this->session->set_userdata($data);
+            $this->session->set_userdata($sess_array);
             redirect('site/members_area');
         } else { // incorrect username or password
             $this->index();
         }
+    }
+    
+    function signup (){
+        
+        $data['main_content'] = 'signup_form';
+        $this->load->view('includes/templates', $data);
+        
     }
 
 }
