@@ -18,7 +18,7 @@ echo form_input('email_address', set_value('email_address', 'Email Address'));
 <?php
 echo form_input('username', set_value('username', 'Username'));
 echo form_input('password', set_value('password', 'Password'));
-echo form_input('password2', 'Password Confirm');
+echo form_input('passconf', 'Password Confirm');
 
 echo form_submit('submit', 'Create Acccount');
 ?>
