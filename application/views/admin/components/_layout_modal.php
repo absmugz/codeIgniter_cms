@@ -8,7 +8,7 @@
         <h4 class="modal-title">Modal title</h4>
       </div>
       <div class="modal-body">
-        <p>One fine body&hellip;</p>
+        <p> <?php echo $this->load->view($subview); ?></p>
       </div>
       <div class="modal-footer">
         <?php echo $meta_title; ?>
