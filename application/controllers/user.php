@@ -34,6 +34,7 @@ class User extends Admin_Controller {
 
         if ($this->form_validation->run() == TRUE) {
             //We can login and redirect
+            $this->user_model->login();
         }
         $this->data['subview'] = 'admin/user/login';
         $this->load->view('admin/components/_layout_modal', $this->data);
