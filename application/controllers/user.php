@@ -22,11 +22,21 @@ class User extends Admin_Controller {
      * So any other public methods not prefixed with an underscore will
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
-     */
+     
+    public function index() {
+        echo "suck my balls";
+    }
+*/
     public function login() {
 
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+            //We can login and redirect
+        }
         $this->data['subview'] = 'admin/user/login';
-        $this->load->view('admin/_layout_modal');
+        $this->load->view('admin/components/_layout_modal', $this->data);
     }
 
 }
